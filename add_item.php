@@ -1,5 +1,5 @@
-// add_item.php
-$servername = getenv('localhostT');
+<?php
+$servername = getenv('localhost');
 $username = getenv('root');
 $password = getenv('""');
 $dbname = getenv('inventory_db');
@@ -10,20 +10,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Log connection success
 error_log("Database connected successfully");
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $itemName = $_POST['item_name'];
+    $itemQuantity = $_POST['item_quantity'];
 
-$name = $_POST['name'];
-$quantity = $_POST['quantity'];
-$price = $_POST['price'];
+    error_log("Received item name: $itemName");
+    error_log("Received item quantity: $itemQuantity");
 
-$sql = "INSERT INTO items (name, quantity, price) VALUES ('$name', '$quantity', '$price')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    $sql = "INSERT INTO items (name, quantity) VALUES ('$itemName', '$itemQuantity')";
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();
