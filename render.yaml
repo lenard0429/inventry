@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: inventory
+    env: docker
+    plan: free
+    branch: main
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DB_HOST
+        value: your-database-host
+      - key: DB_NAME
+        value: your-database-name
+      - key: DB_USER
+        value: your-database-user
+      - key: DB_PASS
+        value: your-database-password
