@@ -7,10 +7,10 @@ services:
     dockerfilePath: Dockerfile
     envVars:
       - key: DB_HOST
-        value: your-database-host
+        value: localhost
       - key: DB_NAME
-        value: your-database-name
+        value: inventory_db
       - key: DB_USER
-        value: your-database-user
+        value: root
       - key: DB_PASS
-        value: your-database-password
+        value: ""
